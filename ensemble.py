@@ -23,7 +23,7 @@ def run_make_submission(settings, targets_and_pipelines, split_ratio):
     pool = Pool(settings.N_jobs)
     for i, (target, pipeline, feature_masks, classifier, classifier_name) in enumerate(targets_and_pipelines):
         for j, feature_mask in enumerate(feature_masks):
-            progress_str = 'Running T=%d/%d M=%d/%d' % (i+1, len(targets_and_pipelines), j+1, len(feature_masks))
+            progress_str = 'T=%d/%d M=%d/%d' % (i+1, len(targets_and_pipelines), j+1, len(feature_masks))
             pool.apply_async(make_submission_predictions, [settings, target, pipeline, classifier, classifier_name],
                 {'feature_mask': feature_mask, 'progress_str': progress_str, 'quiet': True})
     pool.close()
