@@ -63,6 +63,15 @@ You probably need 100-150GB free disk space to run this code.
 First place the competition data under ./data/ (or as specified in SETTINGS.json)
 
 ```
+data/Dog_1/Dog_1_preictal_segment_0001.mat
+data/Dog_1/Dog_1_preictal_segment_0002.mat
+...
+
+```
+
+Then run the `mat_to_hdf5.py` script.
+
+```
 $ ./mat_to_hdf5.py
 Loading data ...
 Processing data/Dog_1_preictal.hdf5 ...
