@@ -40,6 +40,7 @@ def load_pipeline_data(settings, target, data_type, pipeline, check_only, quiet=
     if isinstance(pipeline, FeatureConcatPipeline):
         data = []
         meta = None
+        num_features = 0
 
         for p in pipeline.get_pipelines():
             _data, _meta = load_data_mp(settings, target, data_type, p, quiet=quiet, meta_only=meta_only)
@@ -49,6 +50,7 @@ def load_pipeline_data(settings, target, data_type, pipeline, check_only, quiet=
             for k in meta.keys():
                 if k == 'X_shape':
                     assert meta[k][:-1] == _meta[k][:-1]
+                    num_features += _meta[k][-1]
                 elif isinstance(_meta[k], np.ndarray):
                     assert np.alltrue(meta[k] == _meta[k])
                 else:
@@ -57,6 +59,8 @@ def load_pipeline_data(settings, target, data_type, pipeline, check_only, quiet=
         d0 = data[0]
         if meta_only:
             data = None
+            # combine shapes
+            meta['X_shape'] = list(meta['X_shape'][:-1]) + [num_features]
         else:
             for d in data[1:]:
                 if d0.ndim != d.ndim:
