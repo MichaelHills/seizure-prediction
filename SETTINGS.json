@@ -1,0 +1,6 @@
+{
+  "competition-data-dir": "data",
+  "data-cache-dir": "data-cache",
+  "submission-dir": "submissions",
+  "num-jobs": "auto"
+}
