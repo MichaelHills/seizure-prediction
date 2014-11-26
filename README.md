@@ -117,6 +117,8 @@ parameters `main.py` would achieve around 0.796 on public LB, and this ensemblin
 would achieve around 0.829. I later learned that using different parameters `gamma=0.003` and
 `C=150.0` I could achieve similar scores around 0.829 without any ensembling.
 
+I mostly used N=10 masks.
+
 ```
 ./ensemble.py
 ./ensemble.py submission
