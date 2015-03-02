@@ -342,7 +342,7 @@ def main():
                     out.append((target, score, pipeline, best_N))
 
             scores = np.array([score for _, score, _, _ in out])
-            summary = get_score_summary('%s ngen=%d' % (ga_classifier_name, ngen), scores, np.mean(scores), targets)
+            summary = get_score_summary('%s ngen=%d' % (ga_classifier_name, ngen), scores)
             summaries.append((summary, np.mean(scores)))
             print summary
 

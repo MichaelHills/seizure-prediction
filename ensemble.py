@@ -106,12 +106,12 @@ def run_cross_validation(settings, targets, pipelines, mask_range, split_ratios,
                         score = np.mean(scores)
                         scores_masked[split_index][mask_index].append(score)
 
-            summary = get_score_summary('%s p=%d full' % (classifier_name, p_num), scores_full, np.mean(scores_full), targets)
+            summary = get_score_summary('%s p=%d full' % (classifier_name, p_num), scores_full)
             summaries.append((summary, np.mean(scores_full)))
             for split_index, split_ratio in enumerate(split_ratios):
                 for mask_index, num_masks in enumerate(mask_range):
                     scores = scores_masked[split_index][mask_index]
-                    summary = get_score_summary('%s p=%d split_ratio=%s masks=%d' % (classifier_name, p_num, split_ratio, num_masks), scores, np.mean(scores), targets)
+                    summary = get_score_summary('%s p=%d split_ratio=%s masks=%d' % (classifier_name, p_num, split_ratio, num_masks), scores)
                     summaries.append((summary, np.mean(scores)))
                     print summary
 
